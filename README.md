@@ -1,7 +1,8 @@
 # gofqueue
 A Flip Queue implementation in Golang.
 
-[GoDoc](https://godoc.org/github.com/swarvanusg/gofqueue) 
+[![Build Status](https://travis-ci.org/swarvanusg/gofqueue.svg?branch=master)](https://travis-ci.org/swarvanusg/gofqueue)
+[![GoDoc](https://img.shields.io/badge/api-Godoc-blue.svg?style=flat-square)](https://godoc.org/github.com/swarvanusg/gofqueue)
 
 
 #### What is Flip Queue:
