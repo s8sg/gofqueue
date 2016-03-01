@@ -53,11 +53,3 @@ A publiser need to be stopped explicitly by calling Stoppublish(). After stoppin
 
 #### Note:
 It is only supported in single consumer and single producer model. In order to use same queue in multiple consumer and producer concurrently, explicit locking should be handled.
-
-#### Current Status:
-The flip queue build is success
-
-The test cases are passing 
-
-
-###### For any queries or concern add issues or write to : swarvanusg@gmail.com
