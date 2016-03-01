@@ -10,29 +10,44 @@ Flip queue is a lock less producer consumer queue that allows the producer and c
 #### How it works:
 Flip queue maintains two separate queue for producer and consumer. As per the requirement of consumption of data it flips the queue.
 
-**Flip :** A phenomena where queue changes its role. That is producer queue becomes consumer queue and vice versa. 
+**Flip :** A phenomena where queue changes its role. That is the producer queue becomes consumer queue and vice versa. 
 
 #### gofqueue Interfaces:
 gofqueue provides basic functionality of a queue. i.e Create, Insert and Get. 
 
 ###### Import Package
-```
+```go
   import "github.com/swarvanusg/gofqueue"
 ```
 ###### Create FQueue
-CreateFQueue() takes the max length of the queue. For making the dynamic length ```0``` should be specified 
-```
-  fqeueu := gofqueue.CreateFQueue(<length>)
+Createfqueue() takes the max length of the queue. For making the dynamic length ```0``` should be specified 
+```go
+  fqeueu := gofqueue.Createfqueue(<length>)
 ```
 ###### Insert Into FQueue
 Insert takes one param of type ```interface{}``` to accept any type of object
-```
+```go
   err := fqueue.Insert(<value>)
 ```
 ###### Get From FQueue
 Get returns the first-most added data
-```
+```gp
   data, err := fqueue.Get()
+```
+###### Get All Data From FQueue
+Getall returns all the data as per the FIFO order. In concurrent queueing it tries to get as max added data, which sometimes make the call blocking if you have a nonstop producer
+```gp
+  data, err := fqueue.Getall()
+```
+###### Launch a puiblisher for the queue
+A publisher could be very useful to dump data of the queue after a regular interval. It uses ```Publish``` interface type to call a ```publish()``` with all data after a specified interval. If ```0``` is specified the interval is set to default ```1 sec```. If queue is empty, call to ```publish()``` after the interval is ignored. Publisher doesn't carry out any locking, user should not make any explicit call to retrive data, or launch multiple publisher. 
+```go
+  fqueue.Startpublish(<interval>, publisher)
+```
+###### Stop a publisher for the queue
+A publiser need to be stopped explicitly by calling Stoppublish(). After stopping publisher could be re launched again
+```go
+  fqueue.Stoppublish()
 ```
 
 #### Note:
